@@ -1,0 +1,4 @@
+/Mnist
+*__pycache__
+*.py~
+*.txt~
