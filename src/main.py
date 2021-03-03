@@ -16,7 +16,10 @@ from evaluate import(
 
 def main():
 
-    model = Net(1)
+    device = (torch.device('cuda') if torch.cuda.is_available()
+              else torch.device('cpu'))
+     
+    model = Net(1).to(device=device)
 
     data_path = "../Mnist/"
 
@@ -33,12 +36,15 @@ def main():
     training_string = "Training"
     val_string = "Val"
     
+    print(f"Training on device {device}.")
+    
     training_loop(
         n_epochs = 100,
         optimizer = optimizer,
         model = model,
         loss_fn = loss_fn,
         train_loader = train_loader,
+        device = device,
         )
     
     evaluate_training(model, train_loader, training_string)
