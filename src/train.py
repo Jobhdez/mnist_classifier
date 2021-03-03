@@ -5,10 +5,14 @@ def training_loop(
         optimizer,
         model,
         loss_fn,
-        train_loader):
+        train_loader,
+        device):
     for epoch in range(1, n_epochs + 1):
         loss_train = 0.0
         for i, (imgs, labels) in enumerate(train_loader):
+
+            imgs = imgs.to(device=device)
+            labels = labels.to(device=device)
 
             outputs = model(imgs)
 
